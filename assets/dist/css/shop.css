@@ -1,0 +1,111 @@
+* {
+  font-family: "Baskerville Old Face";
+}
+.menu {
+  padding: 1.5rem 2rem;
+  background-color: #f0f0f0;
+}
+
+.menu-selection {
+  height: 78vh;
+  border: 0px solid;
+  border-radius: 10px;
+}
+.shopCart {
+  height: 62vh;
+}
+.transaction {
+  height: 82vh;
+  border-radius: 20px;
+  width: 95%;
+}
+
+#search-input {
+  border-radius: 50px;
+}
+
+.transaction-buttons {
+  width: 95%;
+}
+
+.clear-button {
+  border-radius: 30px;
+  border: 2px #fe1212 solid;
+  color: #fe1212;
+}
+
+.submit-button {
+  border-radius: 30px;
+  border: 2px #fe1212 solid;
+  color: #fff;
+  background-color: #fe1212;
+}
+
+.shop-button {
+  font-family: Helvetica, sans-serif;
+  font-size: 20px;
+  font-weight: bold;
+  width: 100%;
+}
+
+#category {
+  border: 0px solid;
+  border-radius: 20px;
+  background-color: white;
+  font-size: 18px;
+  padding: 5px 10px 8px 10px;
+}
+label {
+  font-size: medium;
+}
+.table-riwayat {
+  font-size: medium;
+}
+.form-rounded {
+  border-radius: 1rem;
+}
+.add-menu-btn {
+  background-color: red;
+  color: white;
+}
+.form-group {
+  padding-bottom: 20px;
+}
+.menuItemDisplay {
+  border: 1px lightgray solid;
+  border-radius: 15px;
+  box-shadow: 2px 4px 4px rgba(0, 0, 0, 0.25);
+}
+#hargaDisplay {
+  font-family: "Baskerville Old Face";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 18px;
+  line-height: 25px;
+
+  color: rgba(0, 0, 0, 0.82);
+
+  opacity: 0.8;
+}
+#namaDisplay {
+  font-family: "Baskerville Old Face";
+  font-style: normal;
+  margin-top: 20px;
+  font-weight: 400;
+  font-size: 25px;
+  line-height: 35px;
+
+  color: #000000;
+}
+
+#menuDisplay a {
+  text-decoration: none;
+}
+.form-control {
+  border: 0px black solid;
+  border-radius: 15px;
+}
+.tableAddMenu {
+  border: 0px black solid;
+  border-radius: 15px;
+}

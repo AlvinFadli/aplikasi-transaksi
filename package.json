@@ -1,0 +1,27 @@
+{
+  "name": "aplikasi-transaksi",
+  "version": "1.0.0",
+  "description": "Aplikasi transaksi",
+  "main": "index.js",
+  "scripts": {
+    "start": "electron .",
+    "package-win": "electron-packager . --overwrite --platform-win32 --arch=x64 --prune=true --out=release-builds"
+  },
+  "author": "GitHub",
+  "license": "CC0-1.0",
+  "devDependencies": {
+    "electron": "^19.0.4",
+    "electron-packager": "^15.5.1",
+    "rebuild": "^0.1.2"
+  },
+  "dependencies": {
+    "datatables.net": "^1.12.1",
+    "datatables.net-bs5": "^1.12.1",
+    "datatables.net-buttons-dt": "^2.2.3",
+    "datatables.net-dt": "^1.12.1",
+    "install": "^0.13.0",
+    "jquery": "^3.6.0",
+    "mongoose": "^6.4.0",
+    "npm": "^8.13.0"
+  }
+}
