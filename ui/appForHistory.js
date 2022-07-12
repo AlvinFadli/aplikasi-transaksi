@@ -20,8 +20,8 @@ function renderTransList(transaksis) {
           <td></td>
           <td>${t._id.substr(18).toUpperCase()}</td>
           <td>Rp. ${t.total}, 00</td>
-          <td>${t.tanggal.slice(4, 15)}</td>
-          <td>${t.tanggal.slice(16, 24)}</td>
+          <td>${t.tanggal}</td>
+          <td>${t.waktu}</td>
           <td>
             <button class="btn btn-danger" onclick="deleteHistory('${
               t._id

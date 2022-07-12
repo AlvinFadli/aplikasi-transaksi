@@ -61,9 +61,64 @@ ipcMain.on("get-transaksis", async (e, args) => {
   e.reply("get-transaksis", JSON.stringify(transaksis));
 });
 
-ipcMain.on("get-menus-display", async (e, args) => {
-  const menusForDisplay = await Menu.find();
-  e.reply("get-menus-display", JSON.stringify(menusForDisplay));
+ipcMain.on("get-makanan-display", async (e, args) => {
+  const menusForDisplay = await Menu.find({ jenis: "Makanan" });
+  e.reply("get-makanan-display", JSON.stringify(menusForDisplay));
+});
+ipcMain.on("get-minuman-display", async (e, args) => {
+  const menusForDisplay1 = await Menu.find({ jenis: "Minuman" });
+  e.reply("get-minuman-display", JSON.stringify(menusForDisplay1));
+});
+const month = [
+  "Jan",
+  "Feb",
+  "Mar",
+  "Apr",
+  "May",
+  "Jun",
+  "Jul",
+  "Aug",
+  "Sep",
+  "Oct",
+  "Nov",
+  "Dec",
+];
+const d = new Date();
+const hariIni = `${d.getDate()} ${month[d.getMonth()]} ${d.getFullYear()}`;
+ipcMain.on("get-total-display", async (e, args) => {
+  const query = { tanggal: hariIni };
+  const totalForDisplay = await Transaksi.countDocuments(query);
+  console.log(totalForDisplay);
+  e.reply("get-total-display", JSON.stringify(totalForDisplay));
+});
+ipcMain.on("get-untung-display", async (e, args) => {
+  const pipeline = [
+    { $match: { tanggal: hariIni } },
+    { $group: { _id: null, sum: { $sum: "$total" } } },
+  ];
+  const totalForDisplay = await Transaksi.aggregate(pipeline);
+  console.log(totalForDisplay[0].sum);
+  e.reply("get-untung-display", JSON.stringify(totalForDisplay[0].sum));
+});
+const bulanIni = `${month[d.getMonth()]} ${d.getFullYear()}`;
+ipcMain.on("get-graph-display", async (e, args) => {
+  let i = 0;
+  let id = [];
+  let totalJual = [];
+  const pipeline = [
+    { $match: { tanggal: { $regex: bulanIni } } },
+    { $group: { _id: "$tanggal", sum: { $sum: "$total" } } },
+  ];
+  const totalForDisplay = await Transaksi.aggregate(pipeline);
+  console.log(totalForDisplay);
+  for await (const doc of totalForDisplay) {
+    id.push(totalForDisplay[i]._id);
+    totalJual.push(totalForDisplay[i].sum);
+    i += 1;
+  }
+  console.log("isi array id ", id);
+  console.log("isi array total ", totalJual);
+  e.reply("get-graph-display", totalJual);
 });
 
 //deleting menu from menu list

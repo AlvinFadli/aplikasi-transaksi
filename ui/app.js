@@ -6,7 +6,6 @@ const descriptionAddMenu = document.querySelector("#descriptionAddMenu");
 const menuList = document.querySelector("#menuList");
 
 const { ipcRenderer } = require("electron");
-
 let menus = [];
 //update state
 let updateStatus = false;

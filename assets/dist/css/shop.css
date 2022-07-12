@@ -7,7 +7,7 @@
 }
 
 .menu-selection {
-  height: 78vh;
+  height: 85vh;
   border: 0px solid;
   border-radius: 10px;
 }
@@ -48,7 +48,7 @@
   width: 100%;
 }
 
-#category {
+.category {
   border: 0px solid;
   border-radius: 20px;
   background-color: white;
@@ -108,4 +108,10 @@ label {
 .tableAddMenu {
   border: 0px black solid;
   border-radius: 15px;
+}
+.menuItemLink {
+  text-decoration: none;
+}
+.category {
+  background-color: lightgray !important;
 }

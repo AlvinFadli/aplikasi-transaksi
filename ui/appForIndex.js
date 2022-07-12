@@ -1,28 +1,46 @@
-const menuDisplay = document.querySelector("#menuDisplay");
+const makananDisplay = document.querySelector("#makananDisplay");
+const minumanDisplay = document.querySelector("#minumanDisplay");
 const menuCart = document.querySelector("#menuCart");
 const totalBuy = document.querySelector("#totalBuy");
 const totalForm = document.querySelector("#totalForm");
 const { ipcRenderer } = require("electron");
-let menus = [];
-let menuClickState = false;
+let makanans = [];
+let minumans = [];
+let makananClickState = false;
+let minumanClickState = false;
+
 let i = 1;
 let cartVal = [];
 
-function renderMenuDisplay(menus) {
-  menuDisplay.innerHTML = "";
-  menus.map((m) => {
-    menuDisplay.innerHTML += `
-    <a href="javascript: addToCart('${m._id}')" class="menuItemDisplay text-center">
+function renderMinumanDisplay(minumans) {
+  minumanDisplay.innerHTML = "";
+  minumans.map((m) => {
+    minumanDisplay.innerHTML += `
+    <a href="javascript: addToCart('${m._id}')" class="menuItemDisplay menuItemLink text-center">
         <p id="namaDisplay">${m.nama}</p>
         <p id="hargaDisplay">Rp. ${m.harga},00</p>
     </a>
       `;
   });
-  menuClickState = true;
+  minumanClickState = true;
 }
+function renderMakananDisplay(makanans) {
+  makananDisplay.innerHTML = "";
+  makanans.map((m) => {
+    makananDisplay.innerHTML += `
+    <a href="javascript: addToCart('${m._id}')" class="menuItemDisplay menuItemLink text-center">
+        <p id="namaDisplay">${m.nama}</p>
+        <p id="hargaDisplay">Rp. ${m.harga},00</p>
+    </a>
+      `;
+  });
+  makananClickState = true;
+}
+
 let total = 0;
 
 function addToCart(id) {
+  const menus = makanans.concat(minumans);
   const menu = menus.find((menu) => menu._id === id);
   menuCart.innerHTML += `
   <td style="font-size: 20px; padding-left: 20px; font-weight: bold">${menu.nama}</td>
@@ -37,7 +55,8 @@ function addToCart(id) {
     </tr>
   `;
   total += menu.harga;
-  totalBuy.innerHTML = `${total}`;
+  console.log("clicked");
+  totalBuy.innerHTML = `  ${total}`;
 }
 
 function clearCart() {
@@ -65,11 +84,19 @@ ipcRenderer.on("new-transaksi-created", (e, args) => {
   cartVal.push(newTransaksi);
 });
 
-ipcRenderer.send("get-menus-display");
+ipcRenderer.send("get-makanan-display");
 
 //rendering all menu list
-ipcRenderer.on("get-menus-display", (e, args) => {
+ipcRenderer.on("get-makanan-display", (e, args) => {
   const menusReceivedforDisplay = JSON.parse(args);
-  menus = menusReceivedforDisplay;
-  renderMenuDisplay(menus);
+  makanans = menusReceivedforDisplay;
+  renderMakananDisplay(makanans);
+});
+
+ipcRenderer.send("get-minuman-display");
+
+ipcRenderer.on("get-minuman-display", (e, args) => {
+  const menusReceivedforDisplay = JSON.parse(args);
+  minumans = menusReceivedforDisplay;
+  renderMinumanDisplay(minumans);
 });

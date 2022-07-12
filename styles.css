@@ -42,7 +42,12 @@ body {
   position: absolute;
   bottom: 0;
 }
-
+.graphData {
+  background-color: white;
+  height: 30vh;
+  border: 0px solid;
+  border-radius: 20px;
+}
 @media screen and (max-height: 450px) {
   .sidenav {
     padding-top: 15px;
